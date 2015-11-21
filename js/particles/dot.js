@@ -1,4 +1,4 @@
-import { getWindowSize } from '../utils/util';
+import { getWindowSize } from '../utils';
 
 export default class Dot {
 
@@ -19,9 +19,7 @@ export default class Dot {
   }
 
   events() {
-    window.addEventListener('resize', () => {
-      this.setSize();
-    });
+    window.addEventListener('resize', this.setSize.bind(this));
   }
 
   setSize() {

@@ -1,7 +1,5 @@
-import 'babelify/polyfill';
+import 'babel-polyfill';
 import 'whatwg-fetch';
-
-import Promise from 'bluebird';
 import loop from 'raf-loop';
 import insertStylesheet from 'insert-stylesheet';
 
@@ -13,7 +11,6 @@ import Rhythm from './particles/rhythm';
 import Dot from './particles/dot';
 import { SOUNDS, PARTICLE_LENGTH } from './constants';
 
-global.Promise = global.Promise || Promise;
 insertStylesheet('//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css');
 
 const canvas = document.createElement('canvas');

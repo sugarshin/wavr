@@ -1,4 +1,4 @@
-import { getWindowSize } from './utils/util';
+import { getWindowSize } from './utils';
 
 export default class Stage {
 
@@ -10,9 +10,7 @@ export default class Stage {
   }
 
   events() {
-    window.addEventListener('resize', () => {
-      this.setSize();
-    });
+    window.addEventListener('resize', this.setSize.bind(this));
   }
 
   intro() {

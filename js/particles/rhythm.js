@@ -1,4 +1,4 @@
-import { getWindowSize, getRandomInt } from '../utils/util';
+import { getWindowSize, getRandomInt } from '../utils';
 import { PARTICLE_LENGTH } from '../constants';
 
 export default class Rhythm {
@@ -33,9 +33,7 @@ export default class Rhythm {
   }
 
   events() {
-    window.addEventListener('resize', () => {
-      this.setSize();
-    });
+    window.addEventListener('resize', this.setSize.bind(this));
   }
 
   setSize() {
@@ -45,8 +43,8 @@ export default class Rhythm {
   }
 
   gradient() {
-    const radialGradient = this.ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-    const { color, alpha } = this;
+    const { ctx, x, y, radius, color, alpha } = this;
+    const radialGradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
     const rgb = `${color.r}, ${color.g}, ${color.b}`;
     radialGradient.addColorStop(0, `rgba(${rgb}, ${alpha})`);
     radialGradient.addColorStop(.5, `rgba(${rgb}, ${alpha * .2})`);

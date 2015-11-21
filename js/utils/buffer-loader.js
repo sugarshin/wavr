@@ -7,13 +7,11 @@ export default class BufferLoader {
   fetch(url) {
     return new Promise((resolve, reject) => {
       fetch(url)
-        .then(res => {
-          return res.arrayBuffer();
-        })
+        .then(res => res.arrayBuffer())
         .then(arrayBuffer => {
           this.ctx.decodeAudioData(arrayBuffer,
-            buffer => { resolve(buffer); },
-            err => { reject(err); }
+            buffer => resolve(buffer),
+            err => reject(err)
           );
         });
     });

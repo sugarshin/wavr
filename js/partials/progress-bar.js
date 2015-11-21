@@ -1,4 +1,4 @@
-import { getWindowSize } from '../utils/util';
+import { getWindowSize } from '../utils';
 
 export default class ProgressBar {
 
