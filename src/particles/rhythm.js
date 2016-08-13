@@ -8,11 +8,7 @@ export default class Rhythm {
     this.index = index;
     this.velocity = 3;
     this.length = PARTICLE_LENGTH;
-    this.color = {
-      r: getRandomInt(255),
-      g: getRandomInt(255),
-      b: getRandomInt(255)
-    };
+    this.color = ['r', 'g', 'b'].reduce((c, p) => ({ ...c, [p]: getRandomInt(255) }), {});
     this.radius = getRandomInt(40);
     this.alpha = 0;
     this.setSize();

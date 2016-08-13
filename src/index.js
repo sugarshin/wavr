@@ -26,13 +26,18 @@ const stageCtx = stage.ctx;
 
 const progressBar = new ProgressBar(stageCtx);
 
-const rhythms = Array.from({length: PARTICLE_LENGTH}, (v, k) => k)
+const rhythms = Array.from({ length: PARTICLE_LENGTH }, (v, k) => k)
   .map(i => new Rhythm(stageCtx, i))
-  .reduce((a, b) => { return a.concat(b); }, []);
+  .reduce((a, b) => a.concat(b), []);
 
-const dots = Array.from({length: PARTICLE_LENGTH}, (v, k) => k)
+const dots = Array.from({ length: PARTICLE_LENGTH }, (v, k) => k)
   .map(i => new Dot(stageCtx, i))
-  .reduce((a, b) => { return a.concat(b); }, []);
+  .reduce((a, b) => a.concat(b), []);
+
+const renderParticles = (data, index) => {
+  rhythms[index].render(data);
+  dots[index].render(data);
+};
 
 stage.intro();
 
@@ -45,10 +50,7 @@ stage.intro();
     loop(() => {
       stage.render();
       progressBar.render(audioCtx.currentTime, duration);
-      visualizer.getTimeDomainData().forEach((d, i) => {
-        rhythms[i].render(d);
-        dots[i].render(d);
-      });
+      visualizer.getTimeDomainData().forEach(renderParticles);
     }).start();
   } catch (err) {
     console.log('ERROR:\n', err);
