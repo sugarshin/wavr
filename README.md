@@ -1,5 +1,12 @@
-# wavr
+# wavr [![Build Status][travis-image]][travis-url]
 
-WIP
+Web audio visualizer
 
-http://sugarshin.github.io/wavr/
+https://sugarshin.github.io/wavr/
+
+## License
+
+© sugarshin
+
+[travis-image]: https://img.shields.io/travis/sugarshin/wavr/master.svg?branch=master&style=flat-square
+[travis-url]: https://travis-ci.org/sugarshin/wavr

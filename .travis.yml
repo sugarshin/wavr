@@ -1,0 +1,20 @@
+sudo: false
+language: node_js
+node_js:
+  - "6"
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+before_install:
+  - npm update -g npm
+after_success:
+  - NODE_ENV=production npm run build
+  - git config --global user.name "Travis CI"
+  - git config --global user.email "s+travisci@sugarshin.net"
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run deploy
+env:
+  global:
+    - secure: TVEPZ3svmX9B/2yu28h/8UDrkCDFsTF+4ulo9+5q8UUuXvbDAbf4KyheZl69L4wIzUaazukKbMcjFh0+QcDeHY0wGIo9LVuvW18bUFB7OFKcahn/9/GcDZpUHKXbOSbPYmCNDArazSJw71VoYpOUXR+f3iqmjHwbisDeedqGWrzGJvglc8ZQCAdsDuQXKLf4xvb2/EgTYlYW7jsZX4JmD0v/WK/BY0a7Ipm3rmD4ZdQmCiKZR5ROQjSwC81GvUAoyNjVhqaq1IKJYSlR00zEC5NYYSjUlV6qV0l9KxADOVnX36diUBFoiODdMqZouwwV4mjfXVcjRfgr/w+gf403Dqkcbd5Hhb6tUoNcnpyF/0Zft6Aofko8q5kNDRwRFCxO+mGfgCKrS94OR7moNlDAk9/YCCR8JZPKzpVwB4V25qsTZ/p8NksOxXQBDiEv69PJB2Y33yl3kcxcZPiQ0Swky+7tGTIjrZ6wM5mq6pSrjB2rrzXF3/HPXQmfwigClfuQbEFggcPAsy6HRuwF9HRA/yTARIAMq5SDf1C86jB+LqvNAbEaod5ahD28gdf8mafJ5aqFj0hVosEjnWWK7P/kzUxRUpSB3B9fptQYrxClVSG+bWHSQImVmMMQXWOXwmqqnUEm14bV6Pt8Z4zU8b/o4Gq5DWrjMxroKeZ+/1fI15Y=
